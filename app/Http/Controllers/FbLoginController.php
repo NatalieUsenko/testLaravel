@@ -56,6 +56,7 @@ class FbLoginController extends Controller
                 var_dump($status->asArray());
             }
 
+
             return view('fbposts', ['userName' => $user->getName()]);
         }
 
