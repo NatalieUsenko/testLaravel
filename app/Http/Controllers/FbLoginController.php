@@ -55,7 +55,20 @@ class FbLoginController extends Controller
             $i = 0;
             $post = [];
             foreach ($feedEdge as $status) {
-                $post[$i]=$status->asArray();
+                try {
+                    // Returns a `Facebook\FacebookResponse` object
+                    $response = $fb->get(
+                        $status['id'],
+                        $accessToken
+                    );
+                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                    echo 'Graph returned an error: ' . $e->getMessage();
+                    exit;
+                } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                    exit;
+                }
+                $post[$i] = $response->getGraphNode();
                 $i++;
             }
 
