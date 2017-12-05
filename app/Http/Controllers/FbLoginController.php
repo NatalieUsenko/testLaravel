@@ -37,6 +37,19 @@ class FbLoginController extends Controller
             return view('fblogin');
         } else {
             $_SESSION['fb_access_token'] = (string) $accessToken;
+            try {
+                // Returns a `Facebook\FacebookResponse` object
+                $response = $fb->get('/me?fields=id,name', $accessToken);
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                echo 'Graph returned an error: ' . $e->getMessage();
+                exit;
+            } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                exit;
+            }
+            $user = $response->getGraphUser();
+            var_dump($user);
+
             return view('fbposts');
         }
 
