@@ -46,7 +46,7 @@
         <h3> <?php echo $userName;?></h3>
         <?php foreach ($userPosts as $userPost) {?>
         <div class="one-news flex-center">
-            <div class="date">Date: <?php echo $userPost['created_time']->getDate('d.m.Y');?></div>
+            <div class="date">Date: <?php echo $userPost['created_time']->format('d.m.Y');?></div>
         </div>
         <?php }?>
     </div>
