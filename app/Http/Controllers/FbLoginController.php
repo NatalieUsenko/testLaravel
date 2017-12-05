@@ -58,7 +58,7 @@ class FbLoginController extends Controller
                 try {
                     // Returns a `Facebook\FacebookResponse` object
                     $postresponse = $fb->get(
-                        '/'.$status['id'].'?fields=id,link',
+                        '/'.$status['id'].'',
                         $accessToken
                     );
                 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
@@ -73,7 +73,7 @@ class FbLoginController extends Controller
             }
 
 
-            return view('fbposts', ['userName' => $user->getName(), 'userPosts' => $post]);
+            return view('fbposts', ['userName' => $user->getName().' '.$accessToken, 'userPosts' => $post]);
         }
 
 
