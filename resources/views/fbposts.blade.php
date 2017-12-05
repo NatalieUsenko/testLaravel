@@ -8,6 +8,6 @@
     <title>FB login</title>
 </head>
 <body>
-<p>TEST</p>
+<h3> <?php echo $userName;?></h3>
 </body>
 </html>
