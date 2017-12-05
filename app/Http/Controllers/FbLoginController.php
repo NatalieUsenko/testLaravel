@@ -50,7 +50,11 @@ class FbLoginController extends Controller
             }
             $user = $response->getGraphUser();
             echo $user->getName();
-            var_dump($posts);
+
+            $feedEdge = $posts->getGraphEdge();
+            foreach ($feedEdge as $status) {
+                var_dump($status->asArray());
+            }
 
             return view('fbposts');
         }
