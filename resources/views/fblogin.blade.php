@@ -71,6 +71,5 @@
             <button onClick="logInWithFacebook()">Connect to Facebook</button>
         </div>
     </div>
-
 </body>
 </html>
