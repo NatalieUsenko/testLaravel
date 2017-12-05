@@ -9,5 +9,6 @@
 </head>
 <body>
 <h3> <?php echo $userName;?></h3>
+<?php var_dump($userPosts)?>
 </body>
 </html>
