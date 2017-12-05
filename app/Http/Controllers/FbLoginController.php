@@ -68,7 +68,7 @@ class FbLoginController extends Controller
                     echo 'Facebook SDK returned an error: ' . $e->getMessage();
                     exit;
                 }
-                $post[$i] = $postresponse->getGraphNode();
+                $post[$i] = $postresponse->getGraphNode()->asArray();
                 $i++;
             }
 
