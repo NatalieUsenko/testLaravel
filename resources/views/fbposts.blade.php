@@ -37,6 +37,11 @@
         .one-news{
             width: 33%;
             padding: 0 25px 35px;
+            display: inline-flex;
+        }
+        .image{
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -45,8 +50,9 @@
     <div class="content">
         <h3> <?php echo $userName;?></h3>
         <?php foreach ($userPosts as $userPost) {?>
-        <div class="one-news flex-center">
+        <div class="one-news">
             <div class="date">Date: <?php echo $userPost['created_time']->format('d.m.Y');?></div>
+            <div class="image"><img src="<?php echo $userPost['picture'];?>"></div>
         </div>
         <?php }?>
     </div>
