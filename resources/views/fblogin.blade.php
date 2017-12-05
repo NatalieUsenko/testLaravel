@@ -44,7 +44,8 @@
             } else {
                 alert('User cancelled login or did not fully authorize.');
             }
-        });
+        },
+            { scope: 'public_profile,email,user_posts'});
         return false;
     };
     window.fbAsyncInit = function() {
