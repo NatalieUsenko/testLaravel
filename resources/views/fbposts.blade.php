@@ -50,9 +50,10 @@
     <div class="content">
         <h3> <?php echo $userName;?></h3>
         <?php foreach ($userPosts as $userPost) {?>
+        <?php var_dump($userPost);?>
         <div class="one-news">
             <div class="date">Date: <?php echo $userPost['created_time']->format('d.m.Y');?></div>
-            <div class="image"><img src="<?php var_dump($userPost);?>"></div>
+            <div class="image"><img src=""></div>
         </div>
         <?php }?>
     </div>
