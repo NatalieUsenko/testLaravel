@@ -50,12 +50,12 @@ class FbLoginController extends Controller
             }
             $user = $response->getGraphUser();
 
-            var_dump($posts);
+            //var_dump($posts);
 
-            $feedEdges = $posts->getGraphEdge();
+            //$feedEdges = $posts->getGraphEdge();
             $i = 0;
             $post = [];
-            foreach ($feedEdges as $feedEdge) {
+            foreach ($posts as $feedEdge) {
                 try {
                     $postResponse = $fb->get(
                         '/'.$feedEdge['id'].'',
