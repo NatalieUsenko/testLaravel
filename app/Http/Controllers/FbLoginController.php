@@ -56,6 +56,7 @@ class FbLoginController extends Controller
             $i = 0;
             $post = [];
             foreach ($posts as $feedEdge) {
+                $feedEdge['id'] = $feedEdge->getId();
                 try {
                     $postResponse = $fb->get(
                         '/'.$feedEdge['id'].'',
