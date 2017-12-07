@@ -38,9 +38,7 @@ class FbLoginController extends Controller
         } else {
             $_SESSION['fb_access_token'] = (string) $accessToken;
             try {
-                $response = $fb->get('/me?fields=
-                id,name,
-                posts.limit(5){caption,description,name,permalink_url,picture,shares,story}', $accessToken);
+                $response = $fb->get('/me?fields=id,name,posts.limit(5){caption,description,name,permalink_url,picture,shares,story}', $accessToken);
                 //$posts = $fb->get('/me/posts?limit=5', $accessToken);
                 //$posts = $fb->get('/me?fields=posts.limit(5)', $accessToken);
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
