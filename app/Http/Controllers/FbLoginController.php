@@ -40,7 +40,7 @@ class FbLoginController extends Controller
             try {
                 // Returns a `Facebook\FacebookResponse` object
                 $response = $fb->get('/me?fields=id,name', $accessToken);
-                $posts = $fb->get('/me/feed?limit=5', $accessToken);
+                $posts = $fb->get('/me/posts?limit=5', $accessToken);
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
                 echo 'Graph returned an error: ' . $e->getMessage();
                 exit;
@@ -73,7 +73,7 @@ class FbLoginController extends Controller
             }
 
 
-            return view('fbposts', ['userName' => $user->getName().' '.$accessToken, 'userPosts' => $post]);
+            return view('fbposts', ['userName' => $user->getName(), 'userPosts' => $post]);
         }
 
 
