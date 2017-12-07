@@ -40,8 +40,7 @@ class FbLoginController extends Controller
             try {
                 $response = $fb->get('/me?fields=
                 id,name,
-                posts.limit(5){caption,description,name,permalink_url,picture,shares,story}
-                ', $accessToken);
+                posts.limit(5){caption,description,name,permalink_url,picture,shares,story}', $accessToken);
                 //$posts = $fb->get('/me/posts?limit=5', $accessToken);
                 //$posts = $fb->get('/me?fields=posts.limit(5)', $accessToken);
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
@@ -82,7 +81,7 @@ class FbLoginController extends Controller
 //            }
 
 
-            return view('fbposts', ['userName' => $user->getName(), 'userPosts' => $post]);
+            return view('fbposts', ['userName' => $user->getName()]);
         }
 
 
