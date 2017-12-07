@@ -69,7 +69,7 @@ class FbLoginController extends Controller
                     exit;
                 }
                 $postGraphNode = $postResponse->getGraphNode();
-                $post[$i] = $postGraphNode->getField('description');
+                $post[$i] = $postGraphNode->getField('id');
                 $i++;
             }
 
