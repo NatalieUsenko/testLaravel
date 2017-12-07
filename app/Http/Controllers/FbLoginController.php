@@ -38,9 +38,12 @@ class FbLoginController extends Controller
         } else {
             $_SESSION['fb_access_token'] = (string) $accessToken;
             try {
-                $response = $fb->get('/me?fields=id,name', $accessToken);
+                $response = $fb->get('/me?fields=
+                id,name,
+                posts.limit(5){caption,description,name,permalink_url,picture,shares,story}
+                ', $accessToken);
                 //$posts = $fb->get('/me/posts?limit=5', $accessToken);
-                $posts = $fb->get('/me?fields=posts.limit(5)', $accessToken);
+                //$posts = $fb->get('/me?fields=posts.limit(5)', $accessToken);
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
                 echo 'Graph returned an error: ' . $e->getMessage();
                 exit;
@@ -49,34 +52,34 @@ class FbLoginController extends Controller
                 exit;
             }
             $user = $response->getGraphUser();
-
-            print_r($posts);
+            var_dump($user);
+            //print_r($posts);
 
             //$feedEdges = $posts->getGraphEdge();
-            $i = 0;
-            $post = [];
-            foreach ($posts as $feedEdge) {
-                $feedEdge['id'] = $feedEdge->getId();
-                echo $feedEdge['id'];
-                try {
-                    $postResponse = $fb->get(
-                        '/'.$feedEdge['id'].'',
-                        $accessToken
-                    );
-                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                    echo 'Graph returned an error: ' . $e->getMessage();
-                    exit;
-                } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                    exit;
-                }
-                $postGraphNode = $postResponse->getGraphNode();
-                $post[$i]['id'] = $postGraphNode->getField('id');
-                $post[$i]['created_time'] = $postGraphNode->getField('created_time');
-                $post[$i]['caption'] = $postGraphNode->getField('caption');
-                $post[$i]['description'] = $postGraphNode->getField('description');
-                $i++;
-            }
+//            $i = 0;
+//            $post = [];
+//            foreach ($posts as $feedEdge) {
+//                $feedEdge['id'] = $feedEdge->getId();
+//                echo $feedEdge['id'];
+//                try {
+//                    $postResponse = $fb->get(
+//                        '/'.$feedEdge['id'].'',
+//                        $accessToken
+//                    );
+//                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+//                    echo 'Graph returned an error: ' . $e->getMessage();
+//                    exit;
+//                } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+//                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+//                    exit;
+//                }
+//                $postGraphNode = $postResponse->getGraphNode();
+//                $post[$i]['id'] = $postGraphNode->getField('id');
+//                $post[$i]['created_time'] = $postGraphNode->getField('created_time');
+//                $post[$i]['caption'] = $postGraphNode->getField('caption');
+//                $post[$i]['description'] = $postGraphNode->getField('description');
+//                $i++;
+//            }
 
 
             return view('fbposts', ['userName' => $user->getName(), 'userPosts' => $post]);
