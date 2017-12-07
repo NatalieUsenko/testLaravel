@@ -50,7 +50,7 @@ class FbLoginController extends Controller
             }
             $user = $response->getGraphUser();
 
-            //var_dump($posts);
+            print_r($posts);
 
             //$feedEdges = $posts->getGraphEdge();
             $i = 0;
