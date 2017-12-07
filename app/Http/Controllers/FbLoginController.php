@@ -71,6 +71,8 @@ class FbLoginController extends Controller
                 $postGraphNode = $postResponse->getGraphNode();
                 $post[$i]['id'] = $postGraphNode->getField('id');
                 $post[$i]['created_time'] = $postGraphNode->getField('created_time');
+                $post[$i]['caption'] = $postGraphNode->getField('caption');
+                $post[$i]['description'] = $postGraphNode->getField('description');
                 $i++;
             }
 
